@@ -1,66 +1,37 @@
+[![Go Report Card](https://goreportcard.com/badge/github.com/dmoose/slidingMinMax)](https://goreportcard.com/report/github.com/dmoose/slidingMinMax)
+
 # slidingMinMax
 
-A simple function to calculate a windowed min and max of any comparable values
+A generic struct to calculate a windowed min and max of any comparable values.
+The algoritm maintains a sorted deque of items plus the index at which they were entered.
+The index is used to enforce the window size.  This operation is O(1) since each item is
+only pushed or popped once and the max/min is always the first element.
+
+# Algorithm
+#### below describes calculating max, invert comparisons to calculate min
+- Create deque of size K
+- As items arrive there are two constraints to check
+- (1) If there are items in queue and the first item's index is earlier than window size we remove it
+- (2) If new item is larger than the item at back of queue remove all elements from back of queue that are smaller than new value.
+- After constraints are met push new value onto end of queue
+- The maximum value will always be at the front of the queue
+
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
+see tests for examples of how to create struct for specific type and add elements to it.  The min and max are returned after each call to push.
 ### Prerequisites
 
 none
 
-```
-Give examples
-```
-
 ### Installing
 
-A step by step series of examples that tell you how to get a development env running
 
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Running the tests
 
-Explain how to run the automated tests for this system
+go test
 
-### Break down into end to end tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-## Deployment
-
-Add additional notes about how to deploy this on a live system
-
-## Built With
-
-* [Dropwizard](http://www.dropwizard.io/1.0.2/docs/) - The web framework used
-* [Maven](https://maven.apache.org/) - Dependency Management
-* [ROME](https://rometools.github.io/rome/) - Used to generate RSS Feeds
 
 ## Contributing
 
@@ -68,21 +39,19 @@ Please read [CONTRIBUTING.md](https://gist.github.com/PurpleBooth/b24679402957c6
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/dmoose/slidingMinMax/tags).
 
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [PurpleBooth](https://github.com/PurpleBooth)
+* **Jeff Shumate** - *Initial work* 
 
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+See also the list of [contributors](https://github.com/dmoose/slidingMinMax/contributors) who participated in this project.
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE) file for details
 
 ## Acknowledgments
 
 * Hat tip to anyone whose code was used
-* Inspiration
-* etc
 
