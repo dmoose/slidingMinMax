@@ -41,7 +41,7 @@ func (t *RollingMinMax[D]) push(y ...D) (D, D) {
 		for t.max.Len() > 0 && t.max.Front().index <= (t.i-int64(t.k)) { // constraint 1
 			t.max.PopFront()
 		}
-		for t.max.Len() > 0 && t.max.Back().value < number { // constraint 2
+		for t.max.Len() > 0 && t.max.Back().value <= number { // constraint 2
 			t.max.PopBack()
 		}
 		t.max.PushBack(p) // append new value
@@ -49,7 +49,7 @@ func (t *RollingMinMax[D]) push(y ...D) (D, D) {
 		for t.min.Len() > 0 && t.min.Front().index <= (t.i-int64(t.k)) { // constraint 1
 			t.min.PopFront()
 		}
-		for t.min.Len() > 0 && t.min.Back().value > number { // constraint 2
+		for t.min.Len() > 0 && t.min.Back().value >= number { // constraint 2
 			t.min.PopBack()
 		}
 		t.min.PushBack(p) // append new value

@@ -1,7 +1,6 @@
 package slidingMinMax
 
 import (
-	"fmt"
 	"testing"
 )
 
@@ -17,7 +16,7 @@ func minmax[D data](v []D) (D, D) {
 			min = val
 		}
 	}
-	fmt.Println(v, min, max)
+	// fmt.Println(v, min, max)
 	return min, max
 }
 
